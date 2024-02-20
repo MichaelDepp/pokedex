@@ -47,8 +47,8 @@ const PokeDex: React.FC = () => {
       setPokemons(currentPokemonList);
       setNotfound(false);
     } else {
-      const searchedPokemon = currentPokemonList.filter((value) => {
-        return value.name.toLowerCase().includes(search.toLowerCase());
+      const searchedPokemon = currentPokemonList.filter((value: any) => {
+        return value?.name?.toLowerCase().includes(search.toLowerCase());
       });
       if (searchedPokemon.length > 0) {
         setNotfound(false);
@@ -59,9 +59,13 @@ const PokeDex: React.FC = () => {
     }
   }, [search, currentPokemonList]);
 
-  const handleChange = (e) => setSearch(e.target.value);
+  const handleChange = (e: any) => {
+    const text = e?.target?.value;
+    // setSearch(e?.target.value && e?.target?.value);
+    setSearch(text);
+  };
 
-  const onClickPokemon = (url) => {
+  const onClickPokemon = (url: string) => {
     console.log('this is the url _< ', url);
     axios.get(url).then((response) => {
       console.log(response.data);
@@ -118,7 +122,7 @@ const PokeDex: React.FC = () => {
           </Flex>
           {pokemons && (
             <SimpleGrid columns={3} spacing={[4, 12]}>
-              {pokemons.map((pokemon, index) => (
+              {pokemons.map((pokemon: any, index: number) => (
                 <ThumbnailCard
                   key={index}
                   onClick={() => onClickPokemon(pokemon.url)}

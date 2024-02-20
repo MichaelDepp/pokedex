@@ -38,7 +38,7 @@ const DetailCard: React.FC<DetailCardProps> = (props) => {
     content: () => printRef.current,
   });
 
-  const renderStatsTable = (stats) => (
+  const renderStatsTable = (stats: any) => (
     <TableContainer>
       <Table border={borderColor} size="sm" variant="simple">
         <Thead>
@@ -48,7 +48,7 @@ const DetailCard: React.FC<DetailCardProps> = (props) => {
           </Tr>
         </Thead>
         <Tbody>
-          {stats.map((stat, index) => (
+          {stats.map((stat: any, index: number) => (
             <Tr key={index}>
               <Td>{stat.stat.name}</Td>
               <Td>{stat.base_stat}</Td>
@@ -59,10 +59,10 @@ const DetailCard: React.FC<DetailCardProps> = (props) => {
     </TableContainer>
   );
 
-  const renderBarChart = (stats) => (
+  const renderBarChart = (stats: any) => (
     <TableContainer mt={6}>
       <Table border={borderColor} size="sm" variant="simple">
-        {stats.map((stat, index) => (
+        {stats.map((stat: any, index: number) => (
           <Tr key={index}>
             <Td>{stat.stat.name}</Td>
             <Td width="50%">
